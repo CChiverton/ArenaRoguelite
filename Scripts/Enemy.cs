@@ -6,6 +6,7 @@ public partial class Enemy : CharacterBody2D
 	private int _health = 30;
 	private int _collisionDamage = 10;
 	private const float _speed = 50.0f;
+	private int _experienceValue = 1;
 	Node2D Player;
 	
 	// Called when the node enters the scene tree for the first time.
@@ -19,6 +20,7 @@ public partial class Enemy : CharacterBody2D
 		_health -= damage;
 		if ((_health <= 0))
 		{
+			Player.Call("AddExperience", _experienceValue);
 			QueueFree();
 		}
 	}

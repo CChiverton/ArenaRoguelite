@@ -7,6 +7,21 @@ public partial class Player : CharacterBody2D
 	private const float _speed = 100.0f;
 	private const float _knockbackSpeed = 200.0f;
 	private Vector2 _knockback = Vector2.Zero;
+	private int _experience = 0;
+	private int _experienceMax = 10;
+	private int _level = 1;
+	
+	private void AddExperience(int exp)
+	{
+		_experience += exp;
+		while (_experience >= _experienceMax)
+		{
+			_experience -= _experienceMax;
+			_experienceMax += 1;
+			_level += 1;
+			// TODO Play animation and select upgrades
+		}
+	}
 	
 	private void OnKnockbackTimerTimeout()
 	{
@@ -16,7 +31,6 @@ public partial class Player : CharacterBody2D
 	private void TakeDamage(int enemyDamage)
 	{
 		_health -= enemyDamage;
-		GD.Print(_health);
 		if ((_health <= 0))
 		{
 			QueueFree();
