@@ -3,6 +3,7 @@ using System;
 
 public partial class Enemy : CharacterBody2D
 {
+	private int _health = 30;
 	private const float _speed = 50.0f;
 	Node2D Player;
 	
@@ -10,6 +11,15 @@ public partial class Enemy : CharacterBody2D
 	public override void _Ready()
 	{
 		Player = GetNode<CharacterBody2D>("/root/Game/Player");
+	}
+	
+	private void TakeDamage(int damage)
+	{
+		_health -= damage;
+		if ((_health <= 0))
+		{
+			QueueFree();
+		}
 	}
 	
 	private void Movement()
