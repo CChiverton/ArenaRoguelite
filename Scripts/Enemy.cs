@@ -26,7 +26,7 @@ public partial class Enemy : CharacterBody2D
 	{
 		if (Player != null) 
 		{
-			Velocity = Position.DirectionTo(Player.GlobalPosition) * _speed;
+			Velocity = GlobalPosition.DirectionTo(Player.GlobalPosition) * _speed;
 			MoveAndSlide();
 		}
 	}
