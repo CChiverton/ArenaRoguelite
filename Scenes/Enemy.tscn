@@ -10,6 +10,7 @@ radius = 17.0294
 collision_layer = 8
 collision_mask = 70
 motion_mode = 1
+wall_min_slide_angle = 0.0
 floor_constant_speed = true
 platform_on_leave = 2
 platform_wall_layers = 64

@@ -8,7 +8,7 @@ radius = 15.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 56
+collision_mask = 120
 motion_mode = 1
 floor_constant_speed = true
 platform_on_leave = 2
