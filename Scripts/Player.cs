@@ -3,6 +3,7 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+	private int _health = 100;
 	private const float _speed = 100.0f;
 	private const float _knockbackSpeed = 200.0f;
 	private Vector2 _knockback = Vector2.Zero;
@@ -10,6 +11,16 @@ public partial class Player : CharacterBody2D
 	private void OnKnockbackTimerTimeout()
 	{
 		_knockback = Vector2.Zero;
+	}
+	
+	private void TakeDamage(int enemyDamage)
+	{
+		_health -= enemyDamage;
+		GD.Print(_health);
+		if ((_health <= 0))
+		{
+			QueueFree();
+		}
 	}
 	
 	private void CollisionHandler()
@@ -23,6 +34,10 @@ public partial class Player : CharacterBody2D
 				if (collision.IsInGroup("Enemies"))
 				{
 					_knockback = -Position.DirectionTo(collision.GlobalPosition) * _knockbackSpeed;
+					if (collision.HasMethod("TakeDamage"))
+					{
+						TakeDamage((int)collision.Call("PlayerCollision"));
+					}
 					GetNode<Timer>("KnockbackTimer").Start();
 				} 
 			}

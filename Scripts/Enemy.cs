@@ -4,6 +4,7 @@ using System;
 public partial class Enemy : CharacterBody2D
 {
 	private int _health = 30;
+	private int _collisionDamage = 10;
 	private const float _speed = 50.0f;
 	Node2D Player;
 	
@@ -20,6 +21,12 @@ public partial class Enemy : CharacterBody2D
 		{
 			QueueFree();
 		}
+	}
+	
+	// Handles enemy behaviour when colliding with the player
+	private int PlayerCollision()
+	{
+		return _collisionDamage;
 	}
 	
 	private void Movement()
