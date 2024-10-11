@@ -1,11 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfrngn3bg6qvb"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_ylk4o"]
-[ext_resource type="Texture2D" uid="uid://kp0absm5hmw" path="res://Sprites/Player.png" id="2_ebdft"]
+[ext_resource type="Texture2D" uid="uid://bh0gnue8xm8xf" path="res://Sprites/PlayerHunter.png" id="2_aa0b3"]
 [ext_resource type="PackedScene" uid="uid://flx6n8t2qhfi" path="res://Scenes/BasicGun.tscn" id="3_o6777"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_e65yb"]
-radius = 15.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8oue2"]
+radius = 6.0
+height = 40.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -19,11 +20,12 @@ script = ExtResource("1_ylk4o")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_ebdft")
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_aa0b3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_e65yb")
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_8oue2")
 
 [node name="KnockbackTimer" type="Timer" parent="."]
 process_callback = 0
