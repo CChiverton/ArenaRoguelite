@@ -21,3 +21,10 @@ texture = ExtResource("2_ebdft")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_e65yb")
+
+[node name="KnockbackTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="KnockbackTimer" to="." method="OnKnockbackTimerTimeout"]
