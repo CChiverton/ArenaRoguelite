@@ -7,12 +7,12 @@ public partial class Enemy : CharacterBody2D
 	private int _collisionDamage = 10;
 	private const float _speed = 50.0f;
 	private int _experienceValue = 1;
-	Node2D Player;
+	Node2D PlayerObject;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Player = GetNode<CharacterBody2D>("/root/Game/Player");
+		PlayerObject = GetNode<Game>("/root/Game").PlayerObject;
 	}
 	
 	private void TakeDamage(int damage)
@@ -20,7 +20,7 @@ public partial class Enemy : CharacterBody2D
 		_health -= damage;
 		if ((_health <= 0))
 		{
-			Player.Call("AddExperience", _experienceValue);
+			PlayerObject.Call("AddExperience", _experienceValue);
 			QueueFree();
 		}
 	}
@@ -33,9 +33,9 @@ public partial class Enemy : CharacterBody2D
 	
 	private void Movement()
 	{
-		if (Player != null) 
+		if (PlayerObject != null) 
 		{
-			Velocity = GlobalPosition.DirectionTo(Player.GlobalPosition) * _speed;
+			Velocity = GlobalPosition.DirectionTo(PlayerObject.GlobalPosition) * _speed;
 			MoveAndSlide();
 		}
 	}

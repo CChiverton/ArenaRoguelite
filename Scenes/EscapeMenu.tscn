@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://drknv2v73ffc2"]
+
+[ext_resource type="Script" path="res://Scripts/EscapeMenu.cs" id="1_m4r1v"]
+[ext_resource type="Theme" uid="uid://dihr6xpg55vbq" path="res://Assets/Themes/Menu.tres" id="1_xv5pc"]
+
+[node name="EscapeMenu" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_m4r1v")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xv5pc")
+color = Color(0.0823529, 0.0823529, 0.0823529, 0.498039)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xv5pc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="OnResumeButtonPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/RestartButton" to="." method="OnRestartButtonPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="OnQuitButtonPressed"]
