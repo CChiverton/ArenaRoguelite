@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3htyle2ute1f"]
+
+[ext_resource type="Theme" uid="uid://dihr6xpg55vbq" path="res://Assets/Themes/Menu.tres" id="1_jh2b7"]
+[ext_resource type="Script" path="res://Scripts/MainMenu.cs" id="1_lu1gm"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_lu1gm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.051971, 0.051971, 0.051971, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jh2b7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="StartButton" type="Button" parent="MarginContainer/HBoxContainer/Buttons"]
+layout_mode = 2
+text = "Start
+"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/Buttons"]
+layout_mode = 2
+text = "Quit
+"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/StartButton" to="." method="OnStartButtonPressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/QuitButton" to="." method="OnQuitButtonPressed"]

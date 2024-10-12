@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdef5knnekcn4"]
+[gd_scene load_steps=5 format=3 uid="uid://cdef5knnekcn4"]
 
 [ext_resource type="PackedScene" uid="uid://cfrngn3bg6qvb" path="res://Scenes/Player.tscn" id="1_6ug27"]
+[ext_resource type="PackedScene" uid="uid://c3htyle2ute1f" path="res://Scenes/MainMenu.tscn" id="1_47xts"]
+[ext_resource type="Script" path="res://Scripts/Game.cs" id="1_dja31"]
 [ext_resource type="PackedScene" uid="uid://i83r0jiybs6h" path="res://Scenes/Arena.tscn" id="1_syfpw"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_dja31")
+_startGameArena = ExtResource("1_syfpw")
+_startGamePlayer = ExtResource("1_6ug27")
 
-[node name="Arena" parent="." instance=ExtResource("1_syfpw")]
-position = Vector2(324, 178)
-
-[node name="Player" parent="." instance=ExtResource("1_6ug27")]
-position = Vector2(324, 175)
+[node name="MainMenu" parent="." instance=ExtResource("1_47xts")]
+anchors_preset = 0
