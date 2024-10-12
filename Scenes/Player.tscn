@@ -20,6 +20,8 @@ script = ExtResource("1_ylk4o")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 5
+z_as_relative = false
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_aa0b3")
 
