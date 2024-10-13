@@ -4,12 +4,14 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	private int _health = 100;
-	private const float _speed = 100.0f;
+	private float _speed = 100.0f;
 	private const float _knockbackSpeed = 200.0f;
 	private Vector2 _knockback = Vector2.Zero;
 	private int _experience = 0;
 	private int _experienceMax = 10;
 	private int _level = 1;
+	[Signal]
+	public delegate void LevelUpEventHandler();
 	
 	private void AddExperience(int exp)
 	{
@@ -19,8 +21,16 @@ public partial class Player : CharacterBody2D
 			_experience -= _experienceMax;
 			_experienceMax += 1;
 			_level += 1;
+			EmitSignal(SignalName.LevelUp);
 			// TODO Play animation and select upgrades
 		}
+	}
+	
+	public void LevelUpSpeed(float speed)
+	{
+		GD.Print(_speed);
+		_speed += speed;
+		GD.Print(_speed);
 	}
 	
 	private void OnKnockbackTimerTimeout()

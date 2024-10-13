@@ -10,9 +10,10 @@ public partial class Game : Node2D
 	
 	private MainMenu _mainMenu;
 	private EscapeMenu _escapeMenu;
+	private LevelUpScreen _levelUpScreen;
 	
 	// Loaded Level
-	public Node2D PlayerObject {get; private set;}
+	public Player PlayerObject {get; private set;}
 	private Node2D _arenaObject;
 	
 	// Called when the node enters the scene tree for the first time.
@@ -24,12 +25,25 @@ public partial class Game : Node2D
 		_escapeMenu = GetNode<EscapeMenu>("EscapeMenu");
 		_escapeMenu.ResumeButtonPressed += ResumeGame;
 		_escapeMenu.RestartButtonPressed += RestartGame;
+		
+		_levelUpScreen = GetNode<LevelUpScreen>("LevelUpScreen");
+		_levelUpScreen.DamageUpPressed += DamageUp;
+		_levelUpScreen.SpeedUpPressed += SpeedUp;
+	}
+	
+	/********************** Player Signal Handling **********************/
+	private void PlayerLevelUp()
+	{
+		GetTree().Paused = true;
+		_levelUpScreen.RandomiseButtons();
+		_levelUpScreen.Show();
 	}
 	
 	private void LoadArena()
 	{
 		_arenaObject = _startGameArena.Instantiate<Node2D>();
 		PlayerObject = _startGamePlayer.Instantiate<Player>();
+		PlayerObject.LevelUp += PlayerLevelUp; 
 		AddChild(_arenaObject);
 		AddChild(PlayerObject);
 	}
@@ -55,6 +69,26 @@ public partial class Game : Node2D
 		ResumeGame();
 	}
 	
+	/*********************** Level Up Screen Functions *********************/
+	private void ResumeFromLevelUp()
+	{
+		_levelUpScreen.Hide();
+		GetTree().Paused = false;
+	}
+	
+	private void DamageUp(int damage)
+	{
+		GD.Print("Adding " + damage + " damage");
+		// TODO Add way to increase damage to player
+		ResumeFromLevelUp();
+	}
+	
+	private void SpeedUp(float speed)
+	{
+		GD.Print("Adding " + speed + " speed");
+		PlayerObject.LevelUpSpeed(speed);
+		ResumeFromLevelUp();
+	}
 	
 	private void GetInput()
 	{
