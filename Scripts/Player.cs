@@ -38,9 +38,9 @@ public partial class Player : CharacterBody2D
 	{
 		_damageMultiplier += (float)(percentDamage)/100;
 		Node2D weapons = GetNode<Node2D>("Weapons");
-		foreach (BasicGun gun in weapons.GetChildren())
+		foreach (ProjectileWeapon projectileWeapon in weapons.GetChildren())
 		{
-			gun._damageMultiplier = _damageMultiplier;
+			projectileWeapon._damageMultiplier = _damageMultiplier;
 		}
 	}
 	

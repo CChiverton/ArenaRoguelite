@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwpk57oochp3r"]
+
+[ext_resource type="Script" path="res://Scripts/Weapons/HunterPistol.cs" id="1_rti64"]
+[ext_resource type="PackedScene" uid="uid://roivhbrerl63" path="res://Scenes/Weapons/Projectile.tscn" id="2_ifehw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0by5a"]
+radius = 78.8543
+
+[node name="HunterPistol" type="Node2D"]
+script = ExtResource("1_rti64")
+_projectileDamage = 7
+_projectileSpeed = 240
+_projectile = ExtResource("2_ifehw")
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="AttackRangeCollider" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CircleShape2D_0by5a")
+
+[node name="AttackTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.7
+autostart = true
+
+[node name="Projectiles" type="Node" parent="."]
+
+[connection signal="body_entered" from="AttackRange" to="." method="OnAttackRangeBodyEntered"]
+[connection signal="body_exited" from="AttackRange" to="." method="OnAttackRangeBodyExited"]
+[connection signal="timeout" from="AttackTimer" to="." method="OnAttackTimerTimeout"]
