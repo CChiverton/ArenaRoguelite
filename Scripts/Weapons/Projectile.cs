@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Bullet : Area2D
+public partial class Projectile : Area2D
 {
 	public int Damage = 0;
 	public Vector2 Direction = Vector2.Zero;

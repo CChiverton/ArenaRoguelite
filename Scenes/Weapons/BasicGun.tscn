@@ -1,16 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://flx6n8t2qhfi"]
 
 [ext_resource type="Script" path="res://Scripts/Weapons/BasicGun.cs" id="1_1nevf"]
-[ext_resource type="PackedScene" uid="uid://roivhbrerl63" path="res://Scenes/Weapons/Bullet.tscn" id="2_5n35n"]
+[ext_resource type="PackedScene" uid="uid://roivhbrerl63" path="res://Scenes/Weapons/Projectile.tscn" id="2_omaxb"]
 
 [node name="BasicGun" type="Node2D"]
 script = ExtResource("1_1nevf")
-_bullet = ExtResource("2_5n35n")
+_projectileDamage = 10
+_projectileSpeed = 200
+_projectile = ExtResource("2_omaxb")
 
 [node name="AttackTimer" type="Timer" parent="."]
 process_callback = 0
 autostart = true
 
-[node name="Bullets" type="Node" parent="."]
+[node name="Projectiles" type="Node" parent="."]
 
 [connection signal="timeout" from="AttackTimer" to="." method="OnAttackTimerTimeout"]
