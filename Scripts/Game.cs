@@ -15,6 +15,15 @@ public partial class Game : Node2D
 	// Loaded Level
 	public Player PlayerObject {get; private set;}
 	private Node2D _arenaObject;
+	public PackedScene PlayerWeapon {get; private set;}
+	 
+	// Player Weapons
+	[Export]
+	private PackedScene _pistol {get; set;}
+	[Export]
+	private PackedScene _shotgun {get; set;}
+	[Export]
+	private PackedScene _basicGun {get; set;}
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -49,8 +58,24 @@ public partial class Game : Node2D
 	}
 	
 	/********************** Main Menu Functions ********************/
-	private void StartGame()
+	private void StartGame(int weapon)
 	{
+		switch(weapon)
+		{
+			case 0:
+				PlayerWeapon = _pistol;
+				break;
+			case 1:
+				PlayerWeapon = _shotgun;
+				break;
+			case 2:
+				PlayerWeapon = _basicGun;
+				break;
+			default:
+				GD.Print("Error in selecting player weapon");
+				break;
+		}
+		
 		LoadArena();
 	}
 	

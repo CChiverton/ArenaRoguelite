@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfrngn3bg6qvb"]
+[gd_scene load_steps=4 format=3 uid="uid://cfrngn3bg6qvb"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_ylk4o"]
 [ext_resource type="Texture2D" uid="uid://bh0gnue8xm8xf" path="res://Assets/Sprites/PlayerHunter.png" id="2_aa0b3"]
-[ext_resource type="PackedScene" uid="uid://flx6n8t2qhfi" path="res://Scenes/Weapons/BasicGun.tscn" id="3_o6777"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8oue2"]
 radius = 6.0
@@ -35,7 +34,5 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Weapons" type="Node2D" parent="."]
-
-[node name="BasicGun" parent="Weapons" instance=ExtResource("3_o6777")]
 
 [connection signal="timeout" from="KnockbackTimer" to="." method="OnKnockbackTimerTimeout"]

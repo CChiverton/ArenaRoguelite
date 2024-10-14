@@ -5,7 +5,7 @@ public partial class MainMenu : Control
 {
 	Node2D Game;
 	[Signal]
-	public delegate void StartButtonPressedEventHandler();
+	public delegate void StartButtonPressedEventHandler(int weapon);
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -14,7 +14,13 @@ public partial class MainMenu : Control
 	
 	private void OnStartButtonPressed()
 	{
-		EmitSignal(SignalName.StartButtonPressed);
+		int weapon = 0;
+		foreach(Button button in GetNode<GridContainer>("MarginContainer/HBoxContainer/WeaponSelect").GetChildren())
+		{
+			if (button.IsPressed()) {break;}
+			weapon++;
+		}
+		EmitSignal(SignalName.StartButtonPressed, weapon);
 		Visible = false;
 	}
 	

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3htyle2ute1f"]
+[gd_scene load_steps=4 format=3 uid="uid://c3htyle2ute1f"]
 
 [ext_resource type="Theme" uid="uid://dihr6xpg55vbq" path="res://Assets/Themes/Menu.tres" id="1_jh2b7"]
 [ext_resource type="Script" path="res://Scripts/UI/MainMenu.cs" id="1_lu1gm"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_nqt5u"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -37,6 +39,7 @@ layout_mode = 2
 
 [node name="Buttons" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 2
 alignment = 1
 
 [node name="StartButton" type="Button" parent="MarginContainer/HBoxContainer/Buttons"]
@@ -47,6 +50,35 @@ text = "Start
 [node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/Buttons"]
 layout_mode = 2
 text = "Quit
+"
+
+[node name="WeaponSelect" type="GridContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+columns = 2
+
+[node name="PistolButton" type="Button" parent="MarginContainer/HBoxContainer/WeaponSelect"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_nqt5u")
+text = "Pistol
+"
+
+[node name="ShotgunButton" type="Button" parent="MarginContainer/HBoxContainer/WeaponSelect"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_nqt5u")
+text = "Shotgun
+
+"
+
+[node name="CrossgunButton" type="Button" parent="MarginContainer/HBoxContainer/WeaponSelect"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_nqt5u")
+text = "CrossGun
+
 "
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Buttons/StartButton" to="." method="OnStartButtonPressed"]

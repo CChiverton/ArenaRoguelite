@@ -18,6 +18,13 @@ public partial class Player : CharacterBody2D
 	[Signal]
 	public delegate void LevelUpEventHandler();
 	
+	
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+		GetNode<Node2D>("Weapons").AddChild(GetNode<Game>("/root/Game").PlayerWeapon.Instantiate<ProjectileWeapon>());
+	}
+	
 	private void AddExperience(int exp)
 	{
 		_experience += exp;
