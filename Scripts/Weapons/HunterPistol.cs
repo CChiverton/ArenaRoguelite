@@ -11,6 +11,7 @@ public partial class HunterPistol : ProjectileWeapon
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		base._Ready();
 		CircleShape2D AttackRange = (CircleShape2D)GetNode<CollisionShape2D>("AttackRange/AttackRangeCollider").Shape;
 		AttackRange.SetRadius(_attackRange);
 	}

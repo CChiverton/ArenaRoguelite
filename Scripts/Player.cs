@@ -13,6 +13,8 @@ public partial class Player : CharacterBody2D
 	private int _experience = 0;
 	private int _experienceMax = 10;
 	private int _level = 1;
+	public Vector2 PlayerDirection {get; private set;} = new Vector2(1,0);
+	
 	[Signal]
 	public delegate void LevelUpEventHandler();
 	
@@ -84,11 +86,11 @@ public partial class Player : CharacterBody2D
 		Vector2 velocity = Velocity;
 
 		// Get the input direction and handle the movement/deceleration.
-		Vector2 direction = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
-		if (direction != Vector2.Zero)
+		PlayerDirection = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
+		if (PlayerDirection != Vector2.Zero)
 		{
-			velocity.X = direction.X * _speed;
-			velocity.Y = direction.Y * _speed;
+			velocity.X = PlayerDirection.X * _speed;
+			velocity.Y = PlayerDirection.Y * _speed;
 		}
 		else
 		{

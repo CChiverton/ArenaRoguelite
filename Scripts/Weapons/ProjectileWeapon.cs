@@ -4,16 +4,28 @@ using System;
 public partial class ProjectileWeapon : Node2D
 {
 	[Export]
-	private int _projectileDamage {get;set;}		// Derived class, same assembly
+	private int _projectileDamage {get;set;}
 	public float _damageMultiplier = 1.0f;
 	[Export]
 	private int _projectileSpeed {get; set;}
 	[Export]
 	private PackedScene _projectile {get; set;}
 	
+	private Player _playerCharacter = null;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		_playerCharacter = GetNode<Player>("../..");
+	}
+	
+	private protected Vector2 GetPlayerCharacterDirection()
+	{
+		if (_playerCharacter != null)
+		{
+			return _playerCharacter.PlayerDirection;
+		}
+		return new Vector2(0,0);
 	}
 	
 	private protected void SpawnProjectile(Vector2 direction)
