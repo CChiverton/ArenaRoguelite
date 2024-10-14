@@ -7,6 +7,7 @@ public partial class BasicGun : Node2D
 	private int _bulletSpeed {get; set;} = 200;
 	[Export]
 	private int _bulletDamage {get;set;} = 10;
+	public float _damageMultiplier = 1.0f;
 	[Export]
 	private PackedScene _bullet {get; set;}
 	
@@ -20,10 +21,11 @@ public partial class BasicGun : Node2D
 		Bullet attackBullet = _bullet.Instantiate<Bullet>();
 		attackBullet.GlobalPosition = GlobalPosition;		// Sets position as bullet doesn't inherit gun position
 		attackBullet.Speed = _bulletSpeed;
-		attackBullet.Damage = _bulletDamage;
+		attackBullet.Damage = (int)(_bulletDamage * _damageMultiplier);
 		attackBullet.Direction = Position.DirectionTo(direction);
 		GetNode<Node>("Bullets").AddChild(attackBullet);
 	}
+	
 	private void OnAttackTimerTimeout()
 	{
 		Vector2 up = new Vector2(0, -1);

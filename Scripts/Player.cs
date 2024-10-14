@@ -3,8 +3,11 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+	// Player upgradable stats
 	private int _health = 100;
 	private float _speed = 100.0f;
+	private float _damageMultiplier = 1.0f;
+	
 	private const float _knockbackSpeed = 200.0f;
 	private Vector2 _knockback = Vector2.Zero;
 	private int _experience = 0;
@@ -28,9 +31,17 @@ public partial class Player : CharacterBody2D
 	
 	public void LevelUpSpeed(float speed)
 	{
-		GD.Print(_speed);
 		_speed += speed;
-		GD.Print(_speed);
+	}
+	
+	public void LevelUpDamageMultiplier(int percentDamage)
+	{
+		_damageMultiplier += (float)(percentDamage)/100;
+		Node2D weapons = GetNode<Node2D>("Weapons");
+		foreach (BasicGun gun in weapons.GetChildren())
+		{
+			gun._damageMultiplier = _damageMultiplier;
+		}
 	}
 	
 	private void OnKnockbackTimerTimeout()

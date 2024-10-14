@@ -78,14 +78,12 @@ public partial class Game : Node2D
 	
 	private void DamageUp(int damage)
 	{
-		GD.Print("Adding " + damage + " damage");
-		// TODO Add way to increase damage to player
+		PlayerObject.LevelUpDamageMultiplier(damage);
 		ResumeFromLevelUp();
 	}
 	
 	private void SpeedUp(float speed)
 	{
-		GD.Print("Adding " + speed + " speed");
 		PlayerObject.LevelUpSpeed(speed);
 		ResumeFromLevelUp();
 	}
