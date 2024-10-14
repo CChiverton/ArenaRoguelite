@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://flx6n8t2qhfi"]
 
-[ext_resource type="Script" path="res://Scripts/BasicGun.cs" id="1_eg1j5"]
-[ext_resource type="PackedScene" uid="uid://roivhbrerl63" path="res://Scenes/Bullet.tscn" id="2_8ncys"]
+[ext_resource type="Script" path="res://Scripts/Weapons/BasicGun.cs" id="1_1nevf"]
+[ext_resource type="PackedScene" uid="uid://roivhbrerl63" path="res://Scenes/Weapons/Bullet.tscn" id="2_5n35n"]
 
 [node name="BasicGun" type="Node2D"]
-script = ExtResource("1_eg1j5")
-_bullet = ExtResource("2_8ncys")
+script = ExtResource("1_1nevf")
+_bullet = ExtResource("2_5n35n")
 
 [node name="AttackTimer" type="Timer" parent="."]
 process_callback = 0

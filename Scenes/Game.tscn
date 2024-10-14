@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdef5knnekcn4"]
 
 [ext_resource type="PackedScene" uid="uid://cfrngn3bg6qvb" path="res://Scenes/Player.tscn" id="1_6ug27"]
-[ext_resource type="PackedScene" uid="uid://c3htyle2ute1f" path="res://Scenes/MainMenu.tscn" id="1_47xts"]
+[ext_resource type="PackedScene" uid="uid://c3htyle2ute1f" path="res://Scenes/UI/MainMenu.tscn" id="1_47xts"]
 [ext_resource type="Script" path="res://Scripts/Game.cs" id="1_dja31"]
 [ext_resource type="PackedScene" uid="uid://i83r0jiybs6h" path="res://Scenes/Arena.tscn" id="1_syfpw"]
-[ext_resource type="PackedScene" uid="uid://drknv2v73ffc2" path="res://Scenes/EscapeMenu.tscn" id="5_tkk1b"]
-[ext_resource type="PackedScene" uid="uid://bmthjgl2w6428" path="res://Scenes/LevelUpScreen.tscn" id="6_cgjvn"]
+[ext_resource type="PackedScene" uid="uid://drknv2v73ffc2" path="res://Scenes/UI/EscapeMenu.tscn" id="5_tkk1b"]
+[ext_resource type="PackedScene" uid="uid://bmthjgl2w6428" path="res://Scenes/UI/LevelUpScreen.tscn" id="6_cgjvn"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_dja31")

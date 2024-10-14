@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=4 uid="uid://i83r0jiybs6h"]
 
-[ext_resource type="Texture2D" uid="uid://djrnodweem4mr" path="res://Sprites/Floors.png" id="1_yxuov"]
-[ext_resource type="Texture2D" uid="uid://dgppmfqfam53y" path="res://Sprites/Walls.png" id="2_ha122"]
+[ext_resource type="Texture2D" uid="uid://djrnodweem4mr" path="res://Assets/Sprites/Map/Floors.png" id="1_yxuov"]
+[ext_resource type="Texture2D" uid="uid://dgppmfqfam53y" path="res://Assets/Sprites/Map/Walls.png" id="2_ha122"]
 [ext_resource type="PackedScene" uid="uid://c5bccpchjiapd" path="res://Scenes/EnemySpawner.tscn" id="2_wkb6f"]
-[ext_resource type="Texture2D" uid="uid://ibv6t76boc4u" path="res://Sprites/Trees.png" id="3_jrhjq"]
+[ext_resource type="Texture2D" uid="uid://ibv6t76boc4u" path="res://Assets/Sprites/Map/Trees.png" id="3_jrhjq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n1ggv"]
 resource_name = "Floors"
