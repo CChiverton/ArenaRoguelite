@@ -7,6 +7,7 @@ public partial class EnemySpawner : Node2D
 	private PackedScene _enemy {get; set;}
 	private Node2D _enemiesGroup;
 	
+	private int _spawnRangeMin = 100;
 	private int _maxEnemyCount = 10;
 	
 	private TileMapLayer _map;
@@ -22,8 +23,14 @@ public partial class EnemySpawner : Node2D
 	
 	private Vector2 SetSpawnLocation()
 	{
-		// TODO Add logic to spawn a a minimum and maximum distance away from the character
-		return _map.MapToLocal(_spawnableTiles.PickRandom());
+		Vector2 spawnLocation;
+		do
+		{
+			spawnLocation = _map.MapToLocal(_spawnableTiles.PickRandom());
+			GD.Print("Attempting Spawn");
+		}
+		while (spawnLocation.DistanceTo(GetNode<Game>("/root/Game").PlayerObject.GlobalPosition) < _spawnRangeMin);
+		return spawnLocation;
 	}
 	
 	private void SpawnEnemy()
