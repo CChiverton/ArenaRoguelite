@@ -27,7 +27,6 @@ public partial class EnemySpawner : Node2D
 		do
 		{
 			spawnLocation = _map.MapToLocal(_spawnableTiles.PickRandom());
-			GD.Print("Attempting Spawn");
 		}
 		while (spawnLocation.DistanceTo(GetNode<Game>("/root/Game").PlayerObject.GlobalPosition) < _spawnRangeMin);
 		return spawnLocation;
