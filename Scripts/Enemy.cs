@@ -41,8 +41,9 @@ public partial class Enemy : CharacterBody2D
 		}
 	}
 	
-	private void OnSpawntimeTimerTimeout()
+	private void OnSpawnAnimationFinished()
 	{
+		GD.Print("Animation finished");
 		_movementEnabled = true;
 	}
 

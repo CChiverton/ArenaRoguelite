@@ -88,10 +88,4 @@ autoplay = "Spawn"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tvwjk")
 
-[node name="SpawntimeTimer" type="Timer" parent="."]
-process_callback = 0
-wait_time = 0.5
-one_shot = true
-autostart = true
-
-[connection signal="timeout" from="SpawntimeTimer" to="." method="OnSpawntimeTimerTimeout"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnSpawnAnimationFinished"]
