@@ -15,9 +15,12 @@ public partial class Player : CharacterBody2D
 	private int _experienceMax = 10;
 	private int _level = 1;
 	public Vector2 PlayerDirection {get; private set;} = new Vector2(1,0);
+	private bool _playerControlEnabled = true;
 	
 	[Signal]
 	public delegate void LevelUpEventHandler();
+	[Signal]
+	public delegate void OnPlayerDeathEventHandler();
 	
 	private ProgressBar HealthBar;
 	
@@ -31,6 +34,18 @@ public partial class Player : CharacterBody2D
 		GetNode<Node2D>("Weapons").AddChild(GetNode<Game>("/root/Game").PlayerWeapon.Instantiate<ProjectileWeapon>());
 	}
 	
+	private void PlayerDeath()
+	{
+		_playerControlEnabled = false;
+		Velocity = Vector2.Zero;		// Stop any existing movement
+		foreach (ProjectileWeapon weapons in GetNode<Node2D>("Weapons").GetChildren())
+		{
+			weapons.WeaponEnabled = false;
+		}
+		GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
+		EmitSignal(SignalName.OnPlayerDeath);
+	}
+	
 	// int healthDifference: 	positive if heal
 	//							negative if damage
 	private void ChangeHealth(int healthDifference)
@@ -40,7 +55,7 @@ public partial class Player : CharacterBody2D
 		
 		if ((_health <= 0))
 		{
-			QueueFree();
+			PlayerDeath();
 		}
 	}
 	
@@ -105,23 +120,26 @@ public partial class Player : CharacterBody2D
 	
 	private void Movement()
 	{
-		Vector2 velocity = Velocity;
-
-		// Get the input direction and handle the movement/deceleration.
-		Vector2 direction = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
-		if (direction != Vector2.Zero)
+		if (_playerControlEnabled)
 		{
-			PlayerDirection = direction;
-			velocity.X = PlayerDirection.X * _speed;
-			velocity.Y = PlayerDirection.Y * _speed;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, _speed);
-			velocity.Y = Mathf.MoveToward(Velocity.Y, 0, _speed);
-		}
+			Vector2 velocity = Velocity;
 
-		Velocity = velocity + _knockback;
+			// Get the input direction and handle the movement/deceleration.
+			Vector2 direction = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
+			if (direction != Vector2.Zero)
+			{
+				PlayerDirection = direction;
+				velocity.X = PlayerDirection.X * _speed;
+				velocity.Y = PlayerDirection.Y * _speed;
+			}
+			else
+			{
+				velocity.X = Mathf.MoveToward(Velocity.X, 0, _speed);
+				velocity.Y = Mathf.MoveToward(Velocity.Y, 0, _speed);
+			}
+
+			Velocity = velocity + _knockback;
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)

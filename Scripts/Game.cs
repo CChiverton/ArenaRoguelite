@@ -53,6 +53,7 @@ public partial class Game : Node2D
 		_arenaObject = _startGameArena.Instantiate<Node2D>();
 		PlayerObject = _startGamePlayer.Instantiate<Player>();
 		PlayerObject.LevelUp += PlayerLevelUp; 
+		PlayerObject.OnPlayerDeath += PlayerDeath;
 		AddChild(_arenaObject);
 		AddChild(PlayerObject);
 	}
@@ -111,6 +112,11 @@ public partial class Game : Node2D
 	{
 		PlayerObject.LevelUpSpeed(speed);
 		ResumeFromLevelUp();
+	}
+	
+	private void PlayerDeath()
+	{
+		RestartGame();
 	}
 	
 	private void GetInput()

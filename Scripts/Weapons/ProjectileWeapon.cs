@@ -11,7 +11,9 @@ public abstract partial class ProjectileWeapon : Node2D
 	[Export]
 	private PackedScene _projectile {get; set;}
 	
+	//Player controls
 	private Player _playerCharacter = null;
+	public bool WeaponEnabled = true;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -30,12 +32,15 @@ public abstract partial class ProjectileWeapon : Node2D
 	
 	private protected void SpawnProjectile(Vector2 direction)
 	{
-		Projectile attackProjectile = _projectile.Instantiate<Projectile>();
-		attackProjectile.GlobalPosition = GlobalPosition;		// Sets position as bullet doesn't inherit gun position
-		attackProjectile.Speed = _projectileSpeed;
-		attackProjectile.Damage = (int)(_projectileDamage * _damageMultiplier);
-		attackProjectile.Direction = Position.DirectionTo(direction);
-		GetNode<Node>("Projectiles").AddChild(attackProjectile);
+		if (WeaponEnabled)
+		{
+			Projectile attackProjectile = _projectile.Instantiate<Projectile>();
+			attackProjectile.GlobalPosition = GlobalPosition;		// Sets position as bullet doesn't inherit gun position
+			attackProjectile.Speed = _projectileSpeed;
+			attackProjectile.Damage = (int)(_projectileDamage * _damageMultiplier);
+			attackProjectile.Direction = Position.DirectionTo(direction);
+			GetNode<Node>("Projectiles").AddChild(attackProjectile);
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
