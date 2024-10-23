@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class ProjectileWeapon : Node2D
+public abstract partial class ProjectileWeapon : Node2D
 {
 	[Export]
 	private int _projectileDamage {get;set;}
