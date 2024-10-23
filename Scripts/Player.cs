@@ -5,6 +5,7 @@ public partial class Player : CharacterBody2D
 {
 	// Player upgradable stats
 	private int _health = 100;
+	private int _maxHealth = 100;
 	private float _speed = 100.0f;
 	private float _damageMultiplier = 1.0f;
 	
@@ -18,11 +19,29 @@ public partial class Player : CharacterBody2D
 	[Signal]
 	public delegate void LevelUpEventHandler();
 	
+	private ProgressBar HealthBar;
+	
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		HealthBar = GetNode<ProgressBar>("HealthBar");
+		HealthBar.MaxValue = _maxHealth;
+		HealthBar.Value = _health;
 		GetNode<Node2D>("Weapons").AddChild(GetNode<Game>("/root/Game").PlayerWeapon.Instantiate<ProjectileWeapon>());
+	}
+	
+	// int healthDifference: 	positive if heal
+	//							negative if damage
+	private void ChangeHealth(int healthDifference)
+	{
+		_health += healthDifference;
+		HealthBar.Value = _health;
+		
+		if ((_health <= 0))
+		{
+			QueueFree();
+		}
 	}
 	
 	private void AddExperience(int exp)
@@ -60,11 +79,7 @@ public partial class Player : CharacterBody2D
 	
 	private void TakeDamage(int enemyDamage)
 	{
-		_health -= enemyDamage;
-		if ((_health <= 0))
-		{
-			QueueFree();
-		}
+		ChangeHealth(-enemyDamage);
 	}
 	
 	private void CollisionHandler()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfrngn3bg6qvb"]
+[gd_scene load_steps=5 format=3 uid="uid://cfrngn3bg6qvb"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_ylk4o"]
 [ext_resource type="Texture2D" uid="uid://bh0gnue8xm8xf" path="res://Assets/Sprites/PlayerHunter.png" id="2_aa0b3"]
+[ext_resource type="Theme" uid="uid://dihr6xpg55vbq" path="res://Assets/Themes/Menu.tres" id="3_jtnq4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8oue2"]
 radius = 6.0
@@ -34,5 +35,20 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Weapons" type="Node2D" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = 26.0
+offset_right = 15.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_jtnq4")
+show_percentage = false
 
 [connection signal="timeout" from="KnockbackTimer" to="." method="OnKnockbackTimerTimeout"]
